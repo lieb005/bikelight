@@ -1,0 +1,46 @@
+#compiling settings
+PROCESSOR	= 18F2550
+CC			= xc8
+PROJ_DIR	= .
+BUILD_DIR	= ${PROJ_DIR}/build
+BIN_DIR		= ${PROJ_DIR}/bin
+OBJ_DIR		= ${PROJ_DIR}/obj
+CC_INCLUDE	= -I/opt/microchip/xc8/v1.01/include/
+CC_FLAGS	= -P -N255 --warn=0 --addrqual=ignore --mode=free# --echo
+OPTIMISATION= --opt=default,+asm,-asmfile,+speed,-space,-debug,9
+OUTPUT		= --output=intel --outdir=${BUILD_DIR} --objdir=${OBJ_DIR}
+OUTFILE		= bike_light.hex
+
+CHIP		= --chip=${PROCESSOR}
+ALL_C		= ${PROJ_DIR}/bike_light.c
+#programming settings
+#PROGRAMMER	= pickit2
+PROGRAM		= pk2cmd
+DEVICE		= -ppic${PROCESSOR}
+.PHONY : all clean clean_all prog program erase on off info help
+.DEFAULT : all
+${ALL_C} all: bike_light.c
+	${CC} ${CC_FLAGS} ${CHIP} ${OPTIMISATION} ${ALL_C} ${OUTPUT}
+	cp ${BUILD_DIR}/${OUTFILE} ${BIN_DIR}/${OUTFILE}
+clean:
+	rm -f ${BUILD_DIR}/* ${OBJ_DIR}/*
+clean_all:
+	rm -f ${BUILD_DIR}/* ${OBJ_DIR}/* ${BIN_DIR}/*
+prog program:
+	${PROGRAM} ${DEVICE} -f${BIN_DIR}/${OUTFILE} -m -j
+erase:
+	${PROGRAM} ${DEVICE} -e -j
+on:
+	${PROGRAM} ${DEVICE} -t
+off:
+	${PROGRAM} ${DEVICE} -w
+info:
+	${PROGRAM} ${DEVICE} -I
+help:
+	@echo "Type 'make' or 'make all' to make the program"
+	@echo "Use the 'prog' or 'program' targets to program the device"
+	@echo "Use 'erase' to erase the device"
+	@echo "Use 'on' and 'off' to control the PicKit's power output"
+	@echo "Use 'info' to get info on the device"
+	@echo "'clean' cleans temp files"
+	@echo "'clean_all' cleans temp and release files"
