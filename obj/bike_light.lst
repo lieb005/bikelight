@@ -1,0 +1,68 @@
+     1: /*
+     2:  * bike_light.c
+     3:  *
+     4:  *  Created on: Aug 25, 2012
+     5:  *      Author: mark
+     6:  */
+     7: #include <xc.h>
+     8: //#include <pic18f2550.h>
+     9: 
+    10: int main(int argc, char** argv);
+    11: void config();
+    12: void idle_loop();
+    13: 
+    14: int main(int argc, char** argv)
+    15: {
+    16:         config();
+    17:         while (1)
+    18:         {
+    19:                 idle_loop();
+    20:         }
+    21: }
+    22: 
+    23: void config()
+    24: {
+    25: // Config stuff
+    26: #pragma config FOSC = INTOSC_XT
+    27: #pragma config FCMEN = ON
+    28: #pragma config PWRT = ON
+    29: #pragma config WDT = ON
+    30: #pragma config PBADEN = OFF
+    31: #pragma config MCLRE = ON
+    32: #pragma config BOR = ON
+    33: #pragma config LVP = OFF
+    34: 
+    35:         GIE = 1;
+    36:         PEIE = 1;
+    37:         TMR2IE = 1;
+    38:         RBIE = 1;
+    39: 
+    40:         nRBPU = 0;
+    41: 
+    42:         PR2 = 0xFF;
+    43:         CCPR1L = 0b11111;
+    44:         CCP1CON = 0;
+    45:         TRISC = 0;
+    46:         TRISB = 0;
+    47:         TMR2 = 0;
+    48:         T2CON = 0b11;
+    49:         TMR2ON = 1;
+    50:         CCP1CON = 0b00001111;
+    51: }
+    52: void idle_loop()
+    53: {
+    54: 
+    55: }
+    56: 
+    57: void interrupt ISR()
+    58: {
+    59:         if (TMR2IF && TMR2IE)
+    60:         {
+    61:                 TMR2IF = 0;
+    62:         }
+    63:         if (RBIE && RBIF)
+    64:         {
+    65:                 RBIF = 0;
+    66:         }
+    67: }
+    68: 

@@ -1,0 +1,209 @@
+
+
+Microchip Technology PIC18 Macro Assembler V1.01 build 46848 
+                                                                                                           Sun Aug 26 17:05:38 2012
+
+
+     1                           
+     2                           	; Microchip MPLAB XC8 C Compiler V1.01
+     3                           	; Copyright (C) 1984-2012 HI-TECH Software
+     4                           
+     5                           	; Auto-generated runtime startup code for final link stage.
+     6                           
+     7                           	;
+     8                           	; Compiler options:
+     9                           	;
+    10                           	; -P -N255 --warn=0 --addrqual=ignore --mode=free --chip=18F2550 \
+    11                           	; --opt=default,+asm,-asmfile,+speed,-space,-debug,9 ./bike_light.c \
+    12                           	; --output=intel --outdir=./build --objdir=./obj
+    13                           	;
+    14                           
+    15                           
+    16                           	processor	18F2550
+    17                           
+    18                           	GLOBAL	_main,start
+    19                           	FNROOT	_main
+    20                           
+    21  0000                     	pic18cxx	equ	1
+    22                           
+    23                           	psect	config,class=CONFIG,delta=1
+    24                           	psect	idloc,class=IDLOC,delta=1
+    25                           	psect	const,class=CODE,delta=1,reloc=2
+    26                           	psect	smallconst,class=SMALLCONST,delta=1,reloc=2
+    27                           	psect	mediumconst,class=MEDIUMCONST,delta=1,reloc=2
+    28                           	psect	rbss,class=COMRAM,space=1
+    29                           	psect	bss,class=RAM,space=1
+    30                           	psect	rdata,class=COMRAM,space=1
+    31                           	psect	irdata,class=CODE,space=0,reloc=2
+    32                           	psect	bss,class=RAM,space=1
+    33                           	psect	data,class=RAM,space=1
+    34                           	psect	idata,class=CODE,space=0,reloc=2
+    35                           	psect	nvrram,class=COMRAM,space=1
+    36                           	psect	nvbit,class=COMRAM,bit,space=1
+    37                           	psect	temp,ovrld,class=COMRAM,space=1
+    38                           	psect	struct,ovrld,class=COMRAM,space=1
+    39                           	psect	rbit,class=COMRAM,bit,space=1
+    40                           	psect	bigbss,class=BIGRAM,space=1
+    41                           	psect	bigdata,class=BIGRAM,space=1
+    42                           	psect	ibigdata,class=CODE,space=0,reloc=2
+    43                           	psect	farbss,class=FARRAM,space=0,reloc=2,delta=1
+    44                           	psect	fardata,class=FARRAM,space=0,reloc=2,delta=1
+    45                           	psect	ifardata,class=CODE,space=0,reloc=2,delta=1
+    46                           
+    47                           	psect	reset_vec,class=CODE,delta=1,reloc=2
+    48                           	psect	powerup,class=CODE,delta=1,reloc=2
+    49                           	psect	intcode,class=CODE,delta=1,reloc=2
+    50                           	psect	intcode_body,class=CODE,delta=1,reloc=2
+    51                           	psect	intcodelo,class=CODE,delta=1,reloc=2
+    52                           	psect	intret,class=CODE,delta=1,reloc=2
+    53                           	psect	intentry,class=CODE,delta=1,reloc=2
+    54                           
+    55                           	psect	intsave_regs,class=BIGRAM,space=1
+    56                           	psect	init,class=CODE,delta=1,reloc=2
+    57                           	psect	text,class=CODE,delta=1,reloc=2
+    58                           GLOBAL	intlevel0,intlevel1,intlevel2
+    59  000000                     intlevel0:
+    60  000000                     intlevel1:
+    61  000000                     intlevel2:
+    62                           GLOBAL	intlevel3
+    63  000000                     intlevel3:
+    64                           	psect	end_init,class=CODE,delta=1,reloc=2
+    65                           	psect	clrtext,class=CODE,delta=1,reloc=2
+    66                           
+    67                           	psect	eeprom_data,class=EEDATA,delta=1
+    68                           	psect	smallconst
+    69                           	GLOBAL	__smallconst
+    70  000000                     __smallconst:
+    71                           	psect	mediumconst
+    72                           	GLOBAL	__mediumconst
+    73  000000                     __mediumconst:
+    74  0000                     wreg	EQU	0FE8h
+    75  0000                     fsr0l	EQU	0FE9h
+    76  0000                     fsr0h	EQU	0FEAh
+    77  0000                     fsr1l	EQU	0FE1h
+    78  0000                     fsr1h	EQU	0FE2h
+    79  0000                     fsr2l	EQU	0FD9h
+    80  0000                     fsr2h	EQU	0FDAh
+    81  0000                     postinc0	EQU	0FEEh
+    82  0000                     postdec0	EQU	0FEDh
+    83  0000                     postinc1	EQU	0FE6h
+    84  0000                     postdec1	EQU	0FE5h
+    85  0000                     postinc2	EQU	0FDEh
+    86  0000                     postdec2	EQU	0FDDh
+    87  0000                     tblptrl	EQU	0FF6h
+    88  0000                     tblptrh	EQU	0FF7h
+    89  0000                     tblptru	EQU	0FF8h
+    90  0000                     tablat		EQU	0FF5h
+    91                           
+    92                           	PSECT	ramtop,class=RAM
+    93                           	GLOBAL	__S1			; top of RAM usage
+    94                           	GLOBAL	__ramtop
+    95                           	GLOBAL	__LRAM,__HRAM
+    96  000800                     __ramtop:
+    97                           
+    98                           	psect	reset_vec
+    99  000000                     reset_vec:
+   100                           	; No powerup routine
+   101                           	global start
+   102                           
+   103                           ; jump to start
+   104  000000  EF0C  F000         	goto start
+   105                           	GLOBAL __accesstop
+   106  0000                     __accesstop EQU 96
+   107                           
+   108                           
+   109                           	psect	init
+   110  000018                     start:
+   111                           	psect	end_init
+   112                           	global start_initialization
+   113  000018  EF73  F000         	goto start_initialization	;jump to C runtime clear & initialization
+   114                           
+   115                           ; Config register CONFIG1L @ 0x300000
+   116                           ;	unspecified using default value
+   117                           
+   118                           	psect	config,class=CONFIG,delta=1
+   119  300000                     		org 0x0
+   120  300000  00                 		db 0x0
+   121                           
+   122                           ; Config register CONFIG1H @ 0x300001
+   123                           ;	Internal/External Oscillator Switchover bit
+   124                           ;	IESO = 0x0, unprogrammed default
+   125                           ;	Oscillator Selection bits
+   126                           ;	FOSC = INTOSC_XT, Internal oscillator, XT used by USB (INTXT)
+   127                           ;	Fail-Safe Clock Monitor Enable bit
+   128                           ;	FCMEN = ON, Fail-Safe Clock Monitor enabled
+   129                           
+   130                           	psect	config,class=CONFIG,delta=1
+   131  300001                     		org 0x1
+   132  300001  4A                 		db 0x4A
+   133                           
+   134                           ; Config register CONFIG2L @ 0x300002
+   135                           ;	USB Voltage Regulator Enable bit
+   136                           ;	VREGEN = 0x0, unprogrammed default
+   137                           ;	Brown-out Reset Enable bits
+   138                           ;	BOR = ON, Brown-out Reset enabled in hardware only (SBOREN is disabled)
+   139                           ;	Brown-out Reset Voltage bits
+   140                           ;	BORV = 0x3, unprogrammed default
+   141                           ;	Power-up Timer Enable bit
+   142                           ;	PWRT = ON, PWRT enabled
+   143                           
+   144                           	psect	config,class=CONFIG,delta=1
+   145  300002                     		org 0x2
+   146  300002  1E                 		db 0x1E
+   147                           
+   148                           ; Config register CONFIG2H @ 0x300003
+   149                           ;	Watchdog Timer Postscale Select bits
+   150                           ;	WDTPS = 0xF, unprogrammed default
+   151                           ;	Watchdog Timer Enable bit
+   152                           ;	WDT = ON, WDT enabled
+   153                           
+   154                           	psect	config,class=CONFIG,delta=1
+   155  300003                     		org 0x3
+   156  300003  1F                 		db 0x1F
+   157                           
+   158                           ; Padding undefined space
+   159                           	psect	config,class=CONFIG,delta=1
+   160  300004                     		org 0x4
+   161  300004  FF                 		db 0xFF
+   162                           
+   163                           ; Config register CONFIG3H @ 0x300005
+   164                           ;	CCP2 MUX bit
+   165                           ;	CCP2MX = 0x1, unprogrammed default
+   166                           ;	PORTB A/D Enable bit
+   167                           ;	PBADEN = OFF, PORTB<4:0> pins are configured as digital I/O on Reset
+   168                           ;	Low-Power Timer 1 Oscillator Enable bit
+   169                           ;	LPT1OSC = 0x0, unprogrammed default
+   170                           ;	MCLR Pin Enable bit
+   171                           ;	MCLRE = ON, MCLR pin enabled; RE3 input pin disabled
+   172                           
+   173                           	psect	config,class=CONFIG,delta=1
+   174  300005                     		org 0x5
+   175  300005  81                 		db 0x81
+   176                           
+   177                           ; Config register CONFIG4L @ 0x300006
+   178                           ;	Background Debugger Enable bit
+   179                           ;	DEBUG = 0x1, unprogrammed default
+   180                           ;	Stack Full/Underflow Reset Enable bit
+   181                           ;	STVREN = 0x1, unprogrammed default
+   182                           ;	Extended Instruction Set Enable bit
+   183                           ;	XINST = 0x0, unprogrammed default
+   184                           ;	Single-Supply ICSP Enable bit
+   185                           ;	LVP = OFF, Single-Supply ICSP disabled
+   186                           
+   187                           	psect	config,class=CONFIG,delta=1
+   188  300006                     		org 0x6
+   189  300006  81                 		db 0x81
+   190                           
+   191                           ; Padding undefined space
+   192                           	psect	config,class=CONFIG,delta=1
+   193  300007                     		org 0x7
+   194  300007  FF                 		db 0xFF
+
+
+Microchip Technology PIC18 Macro Assembler V1.01 build 46848 
+Symbol Table                                                                                               Sun Aug 26 17:05:38 2012
+
+                __S1 0018                 _main 00D6                 start 0018                __HRAM 0000  
+              __LRAM 0001         __mediumconst 0000           __accesstop 000060              __ramtop 0800  
+start_initialization 00E6          __smallconst 0000             intlevel0 0000             intlevel1 0000  
+           intlevel2 0000             intlevel3 0000             reset_vec 0000  
