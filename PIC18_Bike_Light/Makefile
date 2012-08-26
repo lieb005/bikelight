@@ -17,9 +17,15 @@ ALL_C		= ${PROJ_DIR}/bike_light.c
 #PROGRAMMER	= pickit2
 PROGRAM		= pk2cmd
 DEVICE		= -ppic${PROCESSOR}
+#datasheet stuff
+READER		= okular
+PREFIX		= PIC
+SUFFIX		= .pdf
+DIR			= /home/mark/datasheets/IC\'s/Microchip/PIC/
+
 .PHONY : all clean clean_all prog program erase on off info help
 .DEFAULT : all
-${ALL_C} all: bike_light.c
+${ALL_C} all:
 	${CC} ${CC_FLAGS} ${CHIP} ${OPTIMISATION} ${ALL_C} ${OUTPUT}
 	cp ${BUILD_DIR}/${OUTFILE} ${BIN_DIR}/${OUTFILE}
 clean:
@@ -36,6 +42,8 @@ off:
 	${PROGRAM} ${DEVICE} -w
 info:
 	${PROGRAM} ${DEVICE} -I
+datasheet:
+	${READER} ${DIR}/${PREFIX}${PROCESSOR}${SUFFIX}
 help:
 	@echo "Type 'make' or 'make all' to make the program"
 	@echo "Use the 'prog' or 'program' targets to program the device"
@@ -44,3 +52,4 @@ help:
 	@echo "Use 'info' to get info on the device"
 	@echo "'clean' cleans temp files"
 	@echo "'clean_all' cleans temp and release files"
+	@echo "Use 'datasheet' to open datasheet of part'
