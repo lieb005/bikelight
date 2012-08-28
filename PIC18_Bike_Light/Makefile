@@ -7,7 +7,7 @@ BIN_DIR		= ${PROJ_DIR}/bin
 OBJ_DIR		= ${PROJ_DIR}/obj
 CC_INCLUDE	= -I/opt/microchip/xc8/v1.01/include/
 CC_FLAGS	= -P -N255 --warn=0 --addrqual=ignore --mode=free# --echo
-OPTIMISATION= --opt=default,+asm,-asmfile,+speed,-space,-debug,9
+OPTIMISATION= --opt=default,+asm,-asmfile,+speed,-space,-debug,9 --runtime=+plib
 OUTPUT		= --output=intel --outdir=${BUILD_DIR} --objdir=${OBJ_DIR}
 OUTFILE		= bike_light.hex
 
@@ -21,7 +21,7 @@ DEVICE		= -ppic${PROCESSOR}
 READER		= okular
 PREFIX		= PIC
 SUFFIX		= .pdf
-DIR			= /home/mark/datasheets/IC\'s/Microchip/PIC/
+DIR			= ~/datasheets/IC\'s/Microchip/PIC/
 
 .PHONY : all clean clean_all prog program erase on off info help
 .DEFAULT : all

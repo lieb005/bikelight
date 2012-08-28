@@ -27,6 +27,13 @@
 								<option id="gnu.c.compiler.option.include.paths.1452356251" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/opt/microchip/xc8/v1.01/include"/>
 								</option>
+								<option id="gnu.c.compiler.option.preprocessor.def.symbols.4608496" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="interrupt"/>
+									<listOptionValue builtIn="false" value="_18F2550"/>
+									<listOptionValue builtIn="false" value="_PLIB"/>
+									<listOptionValue builtIn="false" value="__XC8"/>
+									<listOptionValue builtIn="false" value="__18CXX"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.705853316" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1380699687" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler"/>
@@ -67,4 +74,9 @@
 		</scannerConfigBuildInfo>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="org.eclipse.cdt.core.language.mapping">
+		<project-mappings>
+			<content-type-mapping configuration="" content-type="org.eclipse.cdt.core.cSource" language="org.eclipse.cdt.core.gcc"/>
+		</project-mappings>
+	</storageModule>
 </cproject>
